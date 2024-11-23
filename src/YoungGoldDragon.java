@@ -1,15 +1,9 @@
 public class YoungGoldDragon {
     int hp = 0;
-    int attackNum = 0;
-
-
 
 
     public YoungGoldDragon(){}
     Dice d = new Dice(0);
-
-
-
 
     public String createYoungGoldDragon(){
         d.setSides(10);

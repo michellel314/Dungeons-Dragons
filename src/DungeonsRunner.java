@@ -18,7 +18,7 @@ public class DungeonsRunner {
         Dungeons dungeon = new Dungeons(p1, p2);
 
 
-        while (gameover = false) {
+        while (gameover) {
             System.out.print("You find yourselves at a crossroad. Would you like to go forwards, left, or right? ");
             ans = scan.nextLine();
             while (!(ans.equals("forwards") || ans.equals("left") || ans.equals("right"))) {
