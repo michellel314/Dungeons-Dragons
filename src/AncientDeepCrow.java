@@ -1,14 +1,15 @@
 public class AncientDeepCrow {
-    int hp = 0;
+    private int hp;
     Dice d = new Dice(0);
     public AncientDeepCrow(){
+        createADC();
     }
 
-    public String createADC(){
+    public void createADC(){
         d.setSides(12);
         d.roll();
         hp = (15 * d.getRollValue() + 90);
-        return "An Ancient Deep Crow with an HP of " + hp + " has appeared";
+        System.out.println("An Ancient Deep Crow with an HP of " + hp + " has appeared");
     }
 
     public void hitADC(int hit){
@@ -41,5 +42,7 @@ public class AncientDeepCrow {
             return 25;
         }
     }
-
+    public boolean isAlive(){
+        return hp > 0;
+    }
 }

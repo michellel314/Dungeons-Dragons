@@ -14,8 +14,9 @@ public class DungeonsRunner {
         System.out.print("Enter player 2 name: ");
         String p2 = scan.nextLine();
 
-
-        Dungeons dungeon = new Dungeons(p1, p2);
+        Player first = new Player(p1, 100, 5);
+        Player second  = new Player(p2, 100, 5);
+        Dungeons dungeon = new Dungeons(first, second);
 
 
         while (gameover) {
@@ -25,16 +26,16 @@ public class DungeonsRunner {
                 System.out.print("Please choose an available path: ");
                 ans = scan.nextLine();
             }
-            encounter = dungeon.encounter();
+            Encounters en = new Encounters(first, second);
             System.out.print("You go  " + ans + " and find a " + encounter);
 
 
             if (encounter.equals("Treasure Chest")) {
-                DungeonsLogic.chest();
+                en.chest();
             } else if (encounter.equals("Monster")) {
-                DungeonsLogic.monster();
+                en.monster();
             } else {
-                DungeonsLogic.npc();
+                en.npc();
             }
         }
 

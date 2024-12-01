@@ -1,10 +1,6 @@
 public class Dungeons {
-    private String p1;
-    private String p2;
-    private int h1 = 100;
-    private int h2 = 100;
-    private int attk1 = 5;
-    private int attk2 = 5;
+    private Player player1;
+    private Player player2;
     private String currentMonster = "";
 
 
@@ -14,9 +10,9 @@ public class Dungeons {
     AncientDeepCrow aDC = new AncientDeepCrow();
 
 
-    public Dungeons(String p1, String p2){
-        this.p1 = p1;
-        this.p2 = p2;
+    public Dungeons(Player player1, Player player2){
+        this.player1 = player1;
+        this.player2 = player2;
     }
 
 
@@ -26,12 +22,13 @@ public class Dungeons {
         int monster = dice.getRollValue();
         if (monster == 1){
             currentMonster = "Young Gold Dragon";
-            return yGD.createYoungGoldDragon();
+            return currentMonster;
         }else if(monster == 2){
             currentMonster = "Shadow Ghast";
-            return sGH.createShadowGhast();
+            return currentMonster;
         } else{
-            return aDC.createADC();
+            currentMonster = "Ancient Deep Crow";
+            return currentMonster;
         }
     }
 
@@ -53,6 +50,14 @@ public class Dungeons {
         }else {
             return "NPC";
         }
+    }
+
+    public Player getPlayer1(){
+        return player1;
+    }
+
+    public Player getPlayer2(){
+        return player2;
     }
 
 }

@@ -1,17 +1,18 @@
 public class ShadowGhast {
-    int SGHP = 0;
+    private int SGHP = 0;
     Dice d = new Dice(0);
 
 
     public ShadowGhast() {
+        createShadowGhast();
     }
 
 
-    public String createShadowGhast() {
+    public void createShadowGhast() {
         d.setSides(8);
         d.roll();
         SGHP = (9 * d.getRollValue() + 9);
-        return "A Shadow Ghast with " + SGHP + " HP has appeared";
+        System.out.println("A Shadow Ghast with " + SGHP + " HP has appeared");
     }
 
 
@@ -47,5 +48,7 @@ public class ShadowGhast {
             return 21;
         }
     }
-
+    public boolean isAlive(){
+        return SGHP > 0;
+    }
 }

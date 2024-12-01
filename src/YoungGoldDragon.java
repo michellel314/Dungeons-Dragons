@@ -1,15 +1,16 @@
 public class YoungGoldDragon {
-    int hp = 0;
+    private int hp = 0;
 
-
-    public YoungGoldDragon(){}
+    public YoungGoldDragon(){
+        createYoungGoldDragon();
+    }
     Dice d = new Dice(0);
 
-    public String createYoungGoldDragon(){
+    public void createYoungGoldDragon(){
         d.setSides(10);
         d.roll();
         hp = (17 * d.getRollValue() + 85);
-        return "A Young Gold Dragon with " + hp + " HP has appeared";
+        System.out.print("A Young Gold Dragon with " + hp + " HP has appeared");
     }
     public void hitYGD(int hit){
         hp -= hit;
@@ -28,14 +29,19 @@ public class YoungGoldDragon {
             return "Flame Breath";
         }
     }
-    public int dmgValue(String attk){
-        if(attk.equals("Bite")){
+    public int dmgValue(String atk){
+        if(atk.equals("Bite")){
             return 10;
-        }else if (attk.equals("Multiattack")){
+        }else if (atk.equals("Multiattack")){
             return 15;
         }else{
             return 35;
         }
     }
+
+    public boolean isAlive(){
+        return hp > 0;
+    }
+
 
 }
