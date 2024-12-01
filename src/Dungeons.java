@@ -3,18 +3,15 @@ public class Dungeons {
     private Player player2;
     private String currentMonster = "";
 
-
     Dice dice = new Dice(0);
     YoungGoldDragon yGD = new YoungGoldDragon();
     ShadowGhast sGH = new ShadowGhast();
     AncientDeepCrow aDC = new AncientDeepCrow();
 
-
     public Dungeons(Player player1, Player player2){
         this.player1 = player1;
         this.player2 = player2;
     }
-
 
     public String monsterGenerator(){
         dice.setSides(3);
@@ -32,13 +29,11 @@ public class Dungeons {
         }
     }
 
-
     public int attackTarget(){
         dice.setSides(2);
         dice.roll();
         return dice.getRollValue();
     }
-
 
     public Player getPlayer1(){
         return player1;

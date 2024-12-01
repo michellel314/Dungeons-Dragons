@@ -6,10 +6,8 @@ public class DungeonsRunner {
         boolean gameover = false;
         Scanner scan = new Scanner(System.in);
 
-
         System.out.print("Enter player 1 name: ");
         String p1 = scan.nextLine();
-
 
         System.out.print("Enter player 2 name: ");
         String p2 = scan.nextLine();
@@ -26,7 +24,6 @@ public class DungeonsRunner {
             }
             Encounters en = new Encounters(first, second);
             System.out.print("You go  " + ans + " and find a " + encounter);
-
 
             if (encounter.equals("Treasure Chest")) {
                 en.chest();

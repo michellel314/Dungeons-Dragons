@@ -21,7 +21,6 @@ public class Player {
         return atk;
     }
 
-
     public void takeDamage(int dmg){
         int loss = health - dmg;
        if (loss > 0){

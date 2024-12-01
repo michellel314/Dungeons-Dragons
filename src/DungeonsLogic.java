@@ -1,4 +1,3 @@
-
 public class DungeonsLogic {
     private Player currentPlayer;
     private Dungeons dnd;
@@ -6,6 +5,7 @@ public class DungeonsLogic {
     private Player player2 = dnd.getPlayer2();
     Dice d = new Dice(0);
     boolean gameOver;
+
     public DungeonsLogic(){
         currentPlayer = null;
         gameOver = false;
@@ -31,6 +31,7 @@ public class DungeonsLogic {
             chestStuff();
         }
     }
+
     private void chestStuff(){
         if (d.getRollValue() <= 1) {
             System.out.println ("You get a jeep");
@@ -78,6 +79,4 @@ public class DungeonsLogic {
     public Player getCurrentPlayer(){
         return currentPlayer;
     }
-
-
 }

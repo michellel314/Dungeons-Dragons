@@ -32,7 +32,6 @@ public class AncientDeepCrow {
         }
     }
 
-
     public int DamageValADC(String move){
         if(move.equals("Claw")){
             return 11;
@@ -42,6 +41,7 @@ public class AncientDeepCrow {
             return 25;
         }
     }
+    
     public boolean isAlive(){
         return hp > 0;
     }

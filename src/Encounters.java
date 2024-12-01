@@ -5,9 +5,9 @@ public class Encounters {
     private Player player1 = dnd.getPlayer1();
     private Player player2 = dnd.getPlayer2();
     DungeonsLogic dndLogic = new DungeonsLogic();
-    String str = "";
     Dice d = new Dice(0);
     Scanner scan = new Scanner(System.in);
+
     public Encounters(Player player1, Player player2){
         dnd = new Dungeons(player1, player2);
     }
@@ -150,6 +150,5 @@ public class Encounters {
             }
         }
         System.out.println("Both players have died");
-
     }
 }

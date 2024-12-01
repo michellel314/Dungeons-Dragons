@@ -12,12 +12,15 @@ public class YoungGoldDragon {
         hp = (17 * d.getRollValue() + 85);
         System.out.print("A Young Gold Dragon with " + hp + " HP has appeared");
     }
+
     public void hitYGD(int hit){
         hp -= hit;
     }
+
     public int getYGDHP(){
         return hp;
     }
+
     public String attack(){
         d.setSides(100);
         d.roll();
@@ -29,6 +32,7 @@ public class YoungGoldDragon {
             return "Flame Breath";
         }
     }
+
     public int dmgValue(String atk){
         if(atk.equals("Bite")){
             return 10;
@@ -42,6 +46,5 @@ public class YoungGoldDragon {
     public boolean isAlive(){
         return hp > 0;
     }
-
 
 }
