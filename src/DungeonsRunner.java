@@ -15,9 +15,7 @@ public class DungeonsRunner {
         String p2 = scan.nextLine();
 
         Player first = new Player(p1, 100, 5);
-        Player second  = new Player(p2, 100, 5);
-        Dungeons dungeon = new Dungeons(first, second);
-
+        Player second = new Player(p2, 100, 5);
 
         while (gameover) {
             System.out.print("You find yourselves at a crossroad. Would you like to go forwards, left, or right? ");
@@ -37,7 +35,17 @@ public class DungeonsRunner {
             } else {
                 en.npc();
             }
-        }
 
+            if (first.isDead() && second.isDead()) {
+                System.out.print("Both players are dead, would both like to restart for a new game? (y / n): ");
+                String choice = scan.nextLine();
+                if (choice.equals("y")) {
+                    gameover = false;
+                }
+            } else {
+                gameover = true;
+            }
+        }
+        System.out.println("Thank you for playing the game!");
     }
 }

@@ -156,5 +156,6 @@ public class Encounters {
             }
         }
         System.out.println("Both players have died");
+
     }
 }
