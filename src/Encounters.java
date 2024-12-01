@@ -2,8 +2,9 @@ import java.util.Scanner;
 public class Encounters {
     private Dungeons dnd;
     private Player currentPlayer;
-    private Player player1;
-    private Player player2;
+    private Player player1 = dnd.getPlayer1();
+    private Player player2 = dnd.getPlayer2();
+    DungeonsLogic dndLogic = new DungeonsLogic();
     String str = "";
     Dice d = new Dice(0);
     Scanner scan = new Scanner(System.in);
@@ -12,7 +13,7 @@ public class Encounters {
     }
 
     public String chest(){
-        str = DungeonsLogic.chestLoot();
+        str = dndLogic.chestLoot();
         if (str.equals("Gameover")){
             return "Gameover";
         }else {
@@ -33,8 +34,6 @@ public class Encounters {
     }
 
     public void monster(){
-        Player player1 = dnd.getPlayer1();
-        Player player2 = dnd.getPlayer2();
         combat();
     }
 
@@ -44,7 +43,7 @@ public class Encounters {
         System.out.print("You meet an old man by the hallway, do you want to talk to him? (y / n): ");
         String ans = scan.nextLine();
         if (ans.equals("y")) {
-            if(d.getRollValue() < 5 && d.getRollValue() == 5){
+            if(d.getRollValue() <= 5){
                 System.out.print("The old man decided to give you full iron armor (+20 HP)");
                 if(currentPlayer == player1){
                     player1.setHealth(20);

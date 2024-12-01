@@ -1,11 +1,13 @@
 
 public class DungeonsLogic {
     private Player currentPlayer;
-    private Player player1;
-    private Player player2;
+    private Dungeons dnd;
+    private Player player1 = dnd.getPlayer1();
+    private Player player2 = dnd.getPlayer2();
     static Dice d = new Dice(0);
 
     public DungeonsLogic(){
+        currentPlayer = null;
     }
     public void chooseStartingPlayer(){
         int randomNum  = (int)(Math.random()* 1) + 1;
@@ -16,7 +18,7 @@ public class DungeonsLogic {
         }
     }
 
-    public static String chestLoot () {
+    public String chestLoot () {
         d.setSides(2);
         d.roll();
         if (d.getRollValue() == 1) {
@@ -24,25 +26,50 @@ public class DungeonsLogic {
         } else {
             d.setSides(100);
             d.roll();
-            return chestStuff();
+            chestStuff();
         }
     }
-    private static String chestStuff(){
+    private void chestStuff(){
         if (d.getRollValue() <= 1) {
-            return "You get a jeep";
-        } else if (d.getRollValue() <= 2) {
-            return "You get a gun (+10 atk)";
+            System.out.println ("You get a jeep");
+        } else if (d.getRollValue() == 2) {
+            System.out.println("You get a gun (+10 atk)");
+            if(currentPlayer == player1){
+                player1.setHealth(10);
+            } else {
+                player2.setHealth(10);
+            }
         } else if (d.getRollValue() <= 7){
-            return "You upgraded to an iron sword (+6 atk)";
+            System.out.println("You upgraded to an iron sword (+6 atk)");
+            if(currentPlayer == player1){
+                player1.setAtk(6);
+            } else {
+                player2.setAtk(6);
+            }
         } else if (d.getRollValue() <= 40){
             d.setSides(2);
             if(d.getRollValue() == 1){
-                return "You obtained a bow and arrow (+3 atk)";
+                System.out.println("You obtained a bow and arrow (+3 atk)");
+                if(currentPlayer == player1){
+                    player1.setAtk(3);
+                } else {
+                    player2.setAtk(3);
+                }
             } else {
-                return "You obtained an artifact (+35 HP)";
+                System.out.println("You obtained an artifact (+35 HP)");
+                if(currentPlayer == player1){
+                    player1.setHealth(35);
+                } else {
+                    player2.setHealth(35);
+                }
             }
         } else {
-            return "You obtained a rusty dagger (+2 atk)";
+            System.out.println("You obtained a rusty dagger (+2 atk)");
+            if(currentPlayer == player1){
+                player1.setAtk(2);
+            } else {
+                player2.setAtk(2);
+            }
         }
     }
 

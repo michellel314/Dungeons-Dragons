@@ -19,13 +19,6 @@ public class Dice {
         return roll;
     }
 
-    public int getRollCount(){
-        return timesRolled;
-    }
-
-    public int getSides(){
-        return numSides;
-    }
 
     public void setSides(int newSide){
         numSides = newSide;

@@ -15,7 +15,7 @@ public class YoungGoldDragon {
     public void hitYGD(int hit){
         hp -= hit;
     }
-    public int getTGDHP(){
+    public int getYGDHP(){
         return hp;
     }
     public String attack(){

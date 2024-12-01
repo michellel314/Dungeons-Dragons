@@ -40,18 +40,6 @@ public class Dungeons {
     }
 
 
-    public String encounter(){
-        dice.setSides(3);
-        dice.roll();
-        if (dice.getRollValue() == 1){
-            return "Treasure Chest";
-        }else if (dice.getRollValue() == 2){
-            return "Monster";
-        }else {
-            return "NPC";
-        }
-    }
-
     public Player getPlayer1(){
         return player1;
     }

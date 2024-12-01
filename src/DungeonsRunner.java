@@ -44,6 +44,8 @@ public class DungeonsRunner {
                 }
             } else {
                 gameover = true;
+                first.reset();
+                second.reset();
             }
         }
         System.out.println("Thank you for playing the game!");
