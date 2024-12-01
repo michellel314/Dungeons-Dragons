@@ -4,10 +4,11 @@ public class DungeonsLogic {
     private Dungeons dnd;
     private Player player1 = dnd.getPlayer1();
     private Player player2 = dnd.getPlayer2();
-    static Dice d = new Dice(0);
-
+    Dice d = new Dice(0);
+    boolean gameOver;
     public DungeonsLogic(){
         currentPlayer = null;
+        gameOver = false;
     }
     public void chooseStartingPlayer(){
         int randomNum  = (int)(Math.random()* 1) + 1;
@@ -18,11 +19,12 @@ public class DungeonsLogic {
         }
     }
 
-    public String chestLoot () {
+    public void chestLoot () {
         d.setSides(2);
         d.roll();
         if (d.getRollValue() == 1) {
-            return "Gameover";
+            System.out.println("Gameover");
+            gameOver = true;
         } else {
             d.setSides(100);
             d.roll();

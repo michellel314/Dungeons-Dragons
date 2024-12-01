@@ -12,13 +12,8 @@ public class Encounters {
         dnd = new Dungeons(player1, player2);
     }
 
-    public String chest(){
-        str = dndLogic.chestLoot();
-        if (str.equals("Gameover")){
-            return "Gameover";
-        }else {
-            return str;
-        }
+    public void chest(){
+        dndLogic.chestLoot();
     }
 
     private void playerSwap(){
