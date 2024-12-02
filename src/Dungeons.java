@@ -1,7 +1,6 @@
 public class Dungeons {
     private Player player1;
     private Player player2;
-    private String currentMonster = "";
 
     Dice dice = new Dice(0);
     YoungGoldDragon yGD = new YoungGoldDragon();
@@ -18,14 +17,11 @@ public class Dungeons {
         dice.roll();
         int monster = dice.getRollValue();
         if (monster == 1){
-            currentMonster = "Young Gold Dragon";
-            return currentMonster;
+            return "Young Gold Dragon";
         }else if(monster == 2){
-            currentMonster = "Shadow Ghast";
-            return currentMonster;
+            return "Shadow Ghast";
         } else{
-            currentMonster = "Ancient Deep Crow";
-            return currentMonster;
+            return "Ancient Deep Crow";
         }
     }
 
