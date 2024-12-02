@@ -23,7 +23,7 @@ public class DungeonsLogic {
         d.setSides(2);
         d.roll();
         if (d.getRollValue() == 1) {
-            System.out.println("Gameover");
+            System.out.println("Gameover!");
             gameOver = true;
         } else {
             d.setSides(100);

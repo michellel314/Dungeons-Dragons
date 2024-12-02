@@ -17,7 +17,6 @@ public class ShadowGhast {
         SGHP -= hit;
     }
 
-
     public int getSGHP() {
         return SGHP;
     }

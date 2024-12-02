@@ -12,8 +12,8 @@ public class DungeonsRunner {
         System.out.print("Enter player 2 name: ");
         String p2 = scan.nextLine();
 
-        Player first = new Player(p1, 100, 5);
-        Player second = new Player(p2, 100, 5);
+        Player first = new Player(p1, 100, 10);
+        Player second = new Player(p2, 100, 10);
 
         while (gameover) {
             System.out.print("You find yourselves at a crossroad. Would you like to go forwards, left, or right? ");

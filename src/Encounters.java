@@ -100,7 +100,9 @@ public class Encounters {
                 } else {
                     System.out.println("The dragon has been defeated!");
                     System.out.println("Player 1's HP: " + player1.getHealth());
+                    System.out.println("Player 1's Atk: " + player1.getAtk());
                     System.out.println("Player 2's HP: " + player2.getHealth());
+                    System.out.println("Player 2's Atk: " + player2.getAtk());
                     System.out.println("You continue on the crossroad");
                 }
             } else if(monster.equals("Shadow Ghast")){
