@@ -2,14 +2,14 @@ public class AncientDeepCrow {
     private int hp;
     Dice d = new Dice(0);
     public AncientDeepCrow(){
-        createADC();
+
     }
 
-    public void createADC(){
+    public String createADC(){
         d.setSides(12);
         d.roll();
         hp = (15 * d.getRollValue() + 90);
-        System.out.println("An Ancient Deep Crow with an HP of " + hp + " has appeared");
+        return "An Ancient Deep Crow with an HP of " + hp + " has appeared";
     }
 
     public void hitADC(int hit){
@@ -26,7 +26,7 @@ public class AncientDeepCrow {
         if (d.getRollValue() >= 50){
             return "Claw";
         } else if(d.getRollValue() >= 30){
-            return "Brave Bird";
+            return "Infectious Penalty";
         } else {
             return "Shadow Caw";
         }
@@ -35,8 +35,8 @@ public class AncientDeepCrow {
     public int DamageValADC(String move){
         if(move.equals("Claw")){
             return 11;
-        } else if(move.equals("Brave Bird")){
-            return 40;
+        } else if(move.equals("Infectious Penalty")){
+            return 100;
         } else {
             return 25;
         }

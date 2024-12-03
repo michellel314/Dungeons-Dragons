@@ -3,14 +3,13 @@ public class ShadowGhast {
     Dice d = new Dice(0);
 
     public ShadowGhast() {
-        createShadowGhast();
     }
 
-    public void createShadowGhast() {
+    public String createShadowGhast() {
         d.setSides(8);
         d.roll();
         SGHP = (9 * d.getRollValue() + 9);
-        System.out.println("A Shadow Ghast with " + SGHP + " HP has appeared");
+        return "A Shadow Ghast with " + SGHP + " HP has appeared";
     }
 
     public void hitSG (int hit) {

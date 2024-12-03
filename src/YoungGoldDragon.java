@@ -2,15 +2,14 @@ public class YoungGoldDragon {
     private int hp = 0;
 
     public YoungGoldDragon(){
-        createYoungGoldDragon();
     }
     Dice d = new Dice(0);
 
-    public void createYoungGoldDragon(){
+    public String createYoungGoldDragon(){
         d.setSides(10);
         d.roll();
         hp = (17 * d.getRollValue() + 85);
-        System.out.print("A Young Gold Dragon with " + hp + " HP has appeared");
+        return "A Young Gold Dragon with " + hp + " HP has appeared";
     }
 
     public void hitYGD(int hit){

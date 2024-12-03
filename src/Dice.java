@@ -8,7 +8,7 @@ public class Dice {
     }
 
     public void roll(){
-        roll = (int) ((Math.random() * ((numSides - 1) + 1) - 1));
+        roll = ((int) (Math.random() * ((numSides - 1) + 1))) - 1;
         timesRolled++;
     }
 

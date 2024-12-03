@@ -9,6 +9,9 @@ public class Player {
 
     }
 
+    public Player(){
+    }
+
     public String getName(){
         return name;
     }
@@ -30,7 +33,11 @@ public class Player {
     }
 
     public boolean isDead(){
-        return health <= 0;
+       if (health <= 0){
+           return true;
+       } else {
+           return false;
+       }
     }
     public void setHealth(int newHp){
         health += newHp;

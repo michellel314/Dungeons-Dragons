@@ -2,14 +2,16 @@ import java.util.Scanner;
 public class Encounters {
     private Dungeons dnd;
     private Player currentPlayer;
-    private Player player1 = dnd.getPlayer1();
-    private Player player2 = dnd.getPlayer2();
+    private Player player1;
+    private Player player2;
     DungeonsLogic dndLogic = new DungeonsLogic();
     Dice d = new Dice(0);
     Scanner scan = new Scanner(System.in);
 
     public Encounters(Player player1, Player player2){
         dnd = new Dungeons(player1, player2);
+        player1 = dnd.getPlayer1();
+        player2 = dnd.getPlayer2();
     }
 
     public void chest(){
@@ -60,11 +62,11 @@ public class Encounters {
                 String word = scan.nextLine();
                 for (int i = word.length(); i > 0; i--){
                     System.out.print(word.substring(i - 1, i));
+
                 }
-                System.out.print("It looks like the old man said the word backwards! \nHe has wasted your time. \nYou move onto the next crossroad");
+                System.out.println();
+                System.out.println("It looks like the old man said the word backwards! \nHe has wasted your time.");
             }
-        } else {
-            System.out.print("You decide to continue on your journey");
         }
     }
 
@@ -76,6 +78,7 @@ public class Encounters {
         while (player1.isDead() || player2.isDead()){
             if(monster.equals("Young Gold Dragon")){
                 YoungGoldDragon yGD = new YoungGoldDragon();
+                System.out.println(yGD.createYoungGoldDragon());
                 System.out.println("It's " + currentPlayer + "'s turn!");
                 int dmg = currentPlayer.getAtk();
                 System.out.print(currentPlayer.getName() + " attacks the Young Gold Dragon for " + dmg + " damage!");
@@ -107,6 +110,7 @@ public class Encounters {
                 }
             } else if(monster.equals("Shadow Ghast")){
                 ShadowGhast sGH = new ShadowGhast();
+                System.out.println(sGH.createShadowGhast());
                 System.out.println("It's " + currentPlayer + "'s turn!");
                 int dmg = currentPlayer.getAtk();
                 System.out.print(currentPlayer.getName() + " attacks the Young Gold Dragon for " + dmg + " damage!");
@@ -129,6 +133,7 @@ public class Encounters {
                 }
             } else {
                 AncientDeepCrow aDC = new AncientDeepCrow();
+                System.out.println(aDC.createADC());
                 System.out.println("It's " + currentPlayer + "'s turn!");
                 int dmg = currentPlayer.getAtk();
                 System.out.print(currentPlayer.getName() + " attacks the Young Gold Dragon for " + dmg + " damage!");
@@ -137,6 +142,12 @@ public class Encounters {
                 if(aDC.isAlive()){
                     String move = aDC.attack();
                     int monsterDmg = aDC.DamageValADC(move);
+                    if(move.equals("Infectious Penalty")){
+                        System.out.println("The Shadow Ghast attacks " + player1.getName() + " with " + move + " for " + monsterDmg + " damage!");
+                        player1.takeDamage(monsterDmg);
+                        System.out.println("The Shadow Ghast attacks " + player2.getName() + " with " + move + " for " + monsterDmg + " damage!");
+                        player2.takeDamage(monsterDmg);
+                    }
                     int victim = dnd.attackTarget();
                     if(victim == 1 && currentPlayer == player1){
                         System.out.println("The Shadow Ghast attacks " + player1.getName() + " with " + move + " for " + monsterDmg + " damage!");
