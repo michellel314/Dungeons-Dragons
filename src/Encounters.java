@@ -1,15 +1,16 @@
 import java.util.Scanner;
 public class Encounters {
-    private Dungeons dnd;
     private Player currentPlayer;
     private Player player1;
     private Player player2;
+
+
     DungeonsLogic dndLogic = new DungeonsLogic();
     Dice d = new Dice(0);
     Scanner scan = new Scanner(System.in);
 
-    public Encounters(Player player1, Player player2){
-        dnd = new Dungeons(player1, player2);
+    public Encounters(){
+        Dungeons dnd = new Dungeons(player1, player2);
         player1 = dnd.getPlayer1();
         player2 = dnd.getPlayer2();
     }
@@ -35,6 +36,7 @@ public class Encounters {
     }
 
     public void npc(){
+        dndLogic.chooseStartingPlayer();
         d.setSides(100);
         d.roll();
         System.out.print("You meet an old man by the hallway, do you want to talk to him? (y / n): ");
@@ -48,7 +50,7 @@ public class Encounters {
                     player2.setHealth(20);
                 }
             } else if(d.getRollValue() <= 10){
-                System.out.println("The old man felt nice enough to give you a new weapon out of pity, you upgraded to a iron sword");
+                System.out.println("The old man felt nice enough to give you a new weapon out of pity, you upgraded to a iron sword (+7 Atk)");
                 if(currentPlayer == player1){
                     player1.setAtk(7);
                 } else {
@@ -72,6 +74,7 @@ public class Encounters {
 
     private void combat(){
         DungeonsLogic dndLogic = new DungeonsLogic();
+        Dungeons dnd = new Dungeons(player1, player2);
         dndLogic.chooseStartingPlayer();
         String monster = dnd.monsterGenerator();
         Player currentPlayer = dndLogic.getCurrentPlayer();

@@ -124,7 +124,7 @@ public class DungeonsLogic {
                 System.out.print("Please choose an available path: ");
                 ans = scan.nextLine();
             }
-            Encounters en = new Encounters(first, second);
+            Encounters en = new Encounters();
             String event = encounters();
             System.out.println("You go " + ans + " and find a " + event);
 
