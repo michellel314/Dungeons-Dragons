@@ -1,8 +1,8 @@
 import java.util.Scanner;
 public class Encounters {
     private Player currentPlayer;
-    private Player player1;
-    private Player player2;
+    Player player1 = new Player("Player 1", 100, 10);
+    Player player2 = new Player();
 
 
     DungeonsLogic dndLogic = new DungeonsLogic();
@@ -17,6 +17,7 @@ public class Encounters {
 
     public void chest(){
         dndLogic.chestLoot();
+
     }
 
     private void playerSwap(){
@@ -39,11 +40,11 @@ public class Encounters {
         dndLogic.chooseStartingPlayer();
         d.setSides(100);
         d.roll();
-        System.out.print("You meet an old man by the hallway, do you want to talk to him? (y / n): ");
+        System.out.print("You meet an old man on the crossroad, do you want to talk to him? (y / n): ");
         String ans = scan.nextLine();
         if (ans.equals("y")) {
             if(d.getRollValue() <= 5){
-                System.out.print("The old man decided to give you full iron armor (+20 HP)");
+                System.out.println ("The old man decided to give you full iron armor (+20 HP)");
                 if(currentPlayer == player1){
                     player1.setHealth(20);
                 } else {

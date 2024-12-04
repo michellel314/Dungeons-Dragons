@@ -117,7 +117,7 @@ public class DungeonsLogic {
         Player second = new Player();
         Dungeons dnd = new Dungeons(first, second);
         chooseStartingPlayer();
-        while (!gameover) {
+        while (gameover) {
             System.out.print("You find yourselves at a crossroad. Would you like to go forwards, left, or right? ");
             ans = scan.nextLine();
             while (!(ans.equals("forwards") || ans.equals("left") || ans.equals("right"))) {
@@ -143,6 +143,8 @@ public class DungeonsLogic {
                     gameover = false;
                     first.reset();
                     second.reset();
+                } else {
+                    gameOver = true;
                 }
             }
         }
