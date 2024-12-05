@@ -6,6 +6,8 @@ public class DungeonsLogic {
     Dungeons dnd = new Dungeons(player1, player2);
     Dice d = new Dice(0);
     boolean gameOver;
+    Scanner scan;
+    String ans;
 
     public DungeonsLogic(){
         currentPlayer = null;
@@ -16,7 +18,8 @@ public class DungeonsLogic {
     }
 
     public void chooseStartingPlayer(){
-        int randomNum  = (int)(Math.random()* 1) + 1;
+        d.setSides(2);
+        int randomNum = d.getRollValue();
         if(randomNum == 1){
             currentPlayer = player1;
         } else {
@@ -104,9 +107,6 @@ public class DungeonsLogic {
     }
 
     public void start(){
-        String ans = "";
-        boolean gameover = false;
-        Scanner scan = new Scanner(System.in);
 
         System.out.print("Enter player 1 name: ");
         String p1 = scan.nextLine();
