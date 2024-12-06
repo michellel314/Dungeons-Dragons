@@ -4,14 +4,15 @@ public class Encounters {
     private Player currentPlayer;
     private Player player1;
     private Player player2;
-    DungeonsLogic dndLogic = new DungeonsLogic();
+    DungeonsLogic dndLogic;
     Dice d = new Dice(0);
     Scanner scan = new Scanner(System.in);
 
-    public Encounters(Player player1, Player player2){
+    public Encounters(DungeonsLogic dndLogic, Player player1, Player player2){
         dnd = new Dungeons(player1, player2);
-        player1 = dnd.getPlayer1();
-        player2 = dnd.getPlayer2();
+        player1 = new Player("Player 1", 100, 5);
+        player2 = new Player();
+        this.dndLogic = dndLogic;
     }
 
     public void chest(){
@@ -71,14 +72,14 @@ public class Encounters {
     }
 
     private void combat(){
-        DungeonsLogic dndLogic = new DungeonsLogic();
         dndLogic.chooseStartingPlayer();
-        String monster = dnd.monsterGenerator();
-        Player currentPlayer = dndLogic.getCurrentPlayer();
-        while (player1.isDead() || player2.isDead()){
-            if(monster.equals("Young Gold Dragon")){
-                YoungGoldDragon yGD = new YoungGoldDragon();
-                System.out.println(yGD.createYoungGoldDragon());
+        d.setSides(3);
+        d.roll();
+        int num = d.getRollValue();
+        if (num == 1){
+            YoungGoldDragon yGD = new YoungGoldDragon();
+            System.out.println(yGD.createYoungGoldDragon());
+            while(!(player1.isDead() && player2.isDead())){
                 System.out.println("It's " + currentPlayer + "'s turn!");
                 int dmg = currentPlayer.getAtk();
                 System.out.print(currentPlayer.getName() + " attacks the Young Gold Dragon for " + dmg + " damage!");
@@ -108,32 +109,46 @@ public class Encounters {
                     System.out.println("Player 2's Atk: " + player2.getAtk());
                     System.out.println("You continue on the crossroad");
                 }
-            } else if(monster.equals("Shadow Ghast")){
-                ShadowGhast sGH = new ShadowGhast();
-                System.out.println(sGH.createShadowGhast());
+            }
+
+        } else if (num == 2) {
+            ShadowGhast sGH = new ShadowGhast();
+            System.out.println(sGH.createShadowGhast());
+            while (!(player1.isDead() && player2.isDead())) {
                 System.out.println("It's " + currentPlayer + "'s turn!");
                 int dmg = currentPlayer.getAtk();
                 System.out.print(currentPlayer.getName() + " attacks the Young Gold Dragon for " + dmg + " damage!");
                 sGH.hitSG(dmg);
                 playerSwap();
-                if(sGH.isAlive()){
+                if (sGH.isAlive()) {
                     String move = sGH.attack();
                     int monsterDmg = sGH.DamageValSG(move);
                     int victim = dnd.attackTarget();
-                    if(victim == 1 && currentPlayer == player1){
+                    if (victim == 1 && currentPlayer == player1) {
                         System.out.println("The Shadow Ghast attacks " + player1.getName() + " with " + move + " for " + monsterDmg + " damage!");
                         player1.takeDamage(monsterDmg);
-                    } else if (currentPlayer == player2){
+                    } else if (currentPlayer == player2) {
                         System.out.println("The Shadow Ghast attacks " + player2.getName() + " with " + move + " for " + monsterDmg + " damage!");
                         player2.takeDamage(monsterDmg);
                     }
+
+                    if (currentPlayer.isDead()) {
+                        System.out.println(currentPlayer.getName() + " has died");
+                        playerSwap();
+                    }
                 } else {
                     System.out.println("The Shadow Ghast has been defeated!");
-                    System.out.println("You continue on the crossroad");
+                    System.out.println("Player 1's HP: " + player1.getHealth());
+                    System.out.println("Player 1's Atk: " + player1.getAtk());
+                    System.out.println("Player 2's HP: " + player2.getHealth());
+                    System.out.println("Player 2's Atk: " + player2.getAtk());
                 }
-            } else {
-                AncientDeepCrow aDC = new AncientDeepCrow();
-                System.out.println(aDC.createADC());
+
+            }
+        } else {
+            AncientDeepCrow aDC = new AncientDeepCrow();
+            System.out.println(aDC.createADC());
+            while(!(player1.isDead() || player2.isDead())){
                 System.out.println("It's " + currentPlayer + "'s turn!");
                 int dmg = currentPlayer.getAtk();
                 System.out.print(currentPlayer.getName() + " attacks the Young Gold Dragon for " + dmg + " damage!");
@@ -143,25 +158,34 @@ public class Encounters {
                     String move = aDC.attack();
                     int monsterDmg = aDC.DamageValADC(move);
                     if(move.equals("Infectious Penalty")){
-                        System.out.println("The Shadow Ghast attacks " + player1.getName() + " with " + move + " for " + monsterDmg + " damage!");
+                        System.out.println("The Ancient Deep Crow attacks " + player1.getName() + " with " + move + " for " + monsterDmg + " damage!");
                         player1.takeDamage(monsterDmg);
-                        System.out.println("The Shadow Ghast attacks " + player2.getName() + " with " + move + " for " + monsterDmg + " damage!");
+                        System.out.println("The Ancient Deep Crow attacks " + player2.getName() + " with " + move + " for " + monsterDmg + " damage!");
                         player2.takeDamage(monsterDmg);
                     }
                     int victim = dnd.attackTarget();
                     if(victim == 1 && currentPlayer == player1){
-                        System.out.println("The Shadow Ghast attacks " + player1.getName() + " with " + move + " for " + monsterDmg + " damage!");
+                        System.out.println("The Ancient Deep Crow attacks " + player1.getName() + " with " + move + " for " + monsterDmg + " damage!");
                         player1.takeDamage(monsterDmg);
                     } else if (currentPlayer == player2){
                         System.out.println("The Shadow Ghast attacks " + player2.getName() + " with " + move + " for " + monsterDmg + " damage!");
                         player2.takeDamage(monsterDmg);
                     }
+
+                    if (currentPlayer.isDead()) {
+                        System.out.println(currentPlayer.getName() + " has died");
+                        playerSwap();
+                    }
                 } else {
                     System.out.println("The Ancient Deep Crow has been defeated!");
-                    System.out.println("You continue on the crossroad");
+                    System.out.println("Player 1's HP: " + player1.getHealth());
+                    System.out.println("Player 1's Atk: " + player1.getAtk());
+                    System.out.println("Player 2's HP: " + player2.getHealth());
+                    System.out.println("Player 2's Atk: " + player2.getAtk());
+
                 }
             }
         }
-        System.out.println("Both players have died");
+
     }
 }
