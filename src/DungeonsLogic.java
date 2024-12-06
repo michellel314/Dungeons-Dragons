@@ -6,19 +6,22 @@ public class DungeonsLogic {
     Dungeons dnd;
     Dice d = new Dice(0);
     boolean gameOver;
-    Scanner scan = new Scanner(System.in);
-    DungeonsLogic dndLogic;
+    Scanner scan;
 
     public DungeonsLogic() {
+        player1 = new Player("Player 1", 100, 10);
+        player2 = new Player();
         currentPlayer = null;
         gameOver = false;
         dnd = new Dungeons(player1, player2);
-        player1 = new Player("Player 1", 100, 10);
-        player2 = new Player();
+        d = new Dice(0);
+        scan = new Scanner(System.in);
     }
 
     public void chooseStartingPlayer() {
-        int randomNum = (int) (Math.random() * 1) + 1;
+        d.setSides(2);
+        d.roll();
+        int randomNum = d.getRollValue();
         if (randomNum == 1) {
             currentPlayer = player1;
         } else {
@@ -32,7 +35,6 @@ public class DungeonsLogic {
         if (d.getRollValue() == 1) {
             System.out.println("Gameover!");
             gameOver = true;
-            System.exit(0);
         } else {
             d.setSides(100);
             d.roll();
@@ -89,9 +91,6 @@ public class DungeonsLogic {
         }
     }
 
-    public Player getCurrentPlayer() {
-        return currentPlayer;
-    }
 
     public String encounters() {
         d.setSides(3);
@@ -109,7 +108,6 @@ public class DungeonsLogic {
     public void start() {
         chooseStartingPlayer();
         game();
-        replay();
     }
 
     private void game(){
@@ -121,36 +119,39 @@ public class DungeonsLogic {
         Player second = new Player();
         String ans = "";
         while (!gameOver) {
+
             System.out.print("You find yourselves at a crossroad. Would you like to go forwards, left, or right? ");
             ans = scan.nextLine();
             while (!(ans.equals("forwards") || ans.equals("left") || ans.equals("right"))) {
                 System.out.print("Please choose an available path: ");
                 ans = scan.nextLine();
             }
-            Encounters en = new Encounters(this.dndLogic, first, second);
+            Encounters en = new Encounters(this, first, second);
             String event = encounters();
             System.out.println("You go " + ans + " and find a " + event);
 
             if (event.equals("Treasure Chest")) {
                 en.chest();
             } else if (event.equals("Monster")) {
-                en.monster();
+                en.combat();
             } else {
                 en.npc();
             }
+
         }
+        replay();
     }
 
     private void replay(){
-        if (player1.isDead() && player2.isDead()) {
+        if (player1.isDead() && player2.isDead() && gameOver) {
             System.out.print("Both players are dead, would both like to restart for a new game? (y / n): ");
             String choice = scan.nextLine();
             if (choice.equals("y")) {
                 gameOver = false;
                 player1.reset();
                 player2.reset();
-            } else {
-                gameOver = true;
+                game();
+            } else if (choice.equals("n")){
                 System.out.println("Thank you for playing the game!");
             }
         }

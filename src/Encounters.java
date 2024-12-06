@@ -9,10 +9,11 @@ public class Encounters {
     Scanner scan = new Scanner(System.in);
 
     public Encounters(DungeonsLogic dndLogic, Player player1, Player player2){
-        dnd = new Dungeons(player1, player2);
-        player1 = new Player("Player 1", 100, 5);
-        player2 = new Player();
+        this.player1 = player1;
+        this.player2 = player2;
         this.dndLogic = dndLogic;
+        dnd = new Dungeons(player1, player2);
+        currentPlayer = player1;
     }
 
     public void chest(){
@@ -20,20 +21,17 @@ public class Encounters {
     }
 
     private void playerSwap(){
-        if(currentPlayer == player1){
-            if(player2.isDead()){
+        if (currentPlayer == player1) {
+            if(!player2.isDead()){
                 currentPlayer = player2;
             }
-        } else if (currentPlayer == player2){
-            if(player1.isDead()){
+        } else if (currentPlayer == player2) {
+            if (!player1.isDead()) {
                 currentPlayer = player1;
             }
         }
     }
 
-    public void monster(){
-        combat();
-    }
 
     public void npc(){
         d.setSides(100);
@@ -57,7 +55,7 @@ public class Encounters {
                 }
             } else if(d.getRollValue() <= 30){
                 System.out.println("You meet the old man and he promises to lead you to treasure, but it turns out he led you to an unknown monster");
-                monster();
+                combat();
             } else {
                 System.out.print("The old man asks you to give him a word: ");
                 String word = scan.nextLine();
@@ -71,7 +69,7 @@ public class Encounters {
         }
     }
 
-    private void combat(){
+    public void combat(){
         dndLogic.chooseStartingPlayer();
         d.setSides(3);
         d.roll();
@@ -79,10 +77,10 @@ public class Encounters {
         if (num == 1){
             YoungGoldDragon yGD = new YoungGoldDragon();
             System.out.println(yGD.createYoungGoldDragon());
-            while(!(player1.isDead() && player2.isDead())){
+            while(!(player1.isDead() || player2.isDead()) && yGD.isAlive()){
                 System.out.println("It's " + currentPlayer + "'s turn!");
                 int dmg = currentPlayer.getAtk();
-                System.out.print(currentPlayer.getName() + " attacks the Young Gold Dragon for " + dmg + " damage!");
+                System.out.println(currentPlayer.getName() + " attacks the Young Gold Dragon for " + dmg + " damage!");
                 yGD.hitYGD(dmg);
                 playerSwap();
                 if(yGD.isAlive()){
@@ -107,17 +105,17 @@ public class Encounters {
                     System.out.println("Player 1's Atk: " + player1.getAtk());
                     System.out.println("Player 2's HP: " + player2.getHealth());
                     System.out.println("Player 2's Atk: " + player2.getAtk());
-                    System.out.println("You continue on the crossroad");
+                    break;
                 }
             }
 
         } else if (num == 2) {
             ShadowGhast sGH = new ShadowGhast();
             System.out.println(sGH.createShadowGhast());
-            while (!(player1.isDead() && player2.isDead())) {
+            while (!(player1.isDead() || player2.isDead()) && sGH.isAlive()) {
                 System.out.println("It's " + currentPlayer + "'s turn!");
                 int dmg = currentPlayer.getAtk();
-                System.out.print(currentPlayer.getName() + " attacks the Young Gold Dragon for " + dmg + " damage!");
+                System.out.println(currentPlayer.getName() + " attacks the Shadow Ghast for " + dmg + " damage!");
                 sGH.hitSG(dmg);
                 playerSwap();
                 if (sGH.isAlive()) {
@@ -142,16 +140,17 @@ public class Encounters {
                     System.out.println("Player 1's Atk: " + player1.getAtk());
                     System.out.println("Player 2's HP: " + player2.getHealth());
                     System.out.println("Player 2's Atk: " + player2.getAtk());
+                    break;
                 }
 
             }
         } else {
             AncientDeepCrow aDC = new AncientDeepCrow();
             System.out.println(aDC.createADC());
-            while(!(player1.isDead() || player2.isDead())){
+            while(!(player1.isDead() || player2.isDead()) && aDC.isAlive()){
                 System.out.println("It's " + currentPlayer + "'s turn!");
                 int dmg = currentPlayer.getAtk();
-                System.out.print(currentPlayer.getName() + " attacks the Young Gold Dragon for " + dmg + " damage!");
+                System.out.println(currentPlayer.getName() + " attacks the Ancient Deep Crow for " + dmg + " damage!");
                 aDC.hitADC(dmg);
                 playerSwap();
                 if(aDC.isAlive()){
@@ -182,7 +181,7 @@ public class Encounters {
                     System.out.println("Player 1's Atk: " + player1.getAtk());
                     System.out.println("Player 2's HP: " + player2.getHealth());
                     System.out.println("Player 2's Atk: " + player2.getAtk());
-
+                    break;
                 }
             }
         }

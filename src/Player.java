@@ -9,8 +9,9 @@ public class Player {
     }
 
     public Player(){
+        this.name = "Player 2";
         health = 100;
-        atk = 5;
+        atk = 10;
     }
 
     public String getName(){
@@ -27,7 +28,7 @@ public class Player {
 
     public void takeDamage(int dmg){
         int loss = health - dmg;
-       if (loss > 0){
+       if (loss < health){
            health -= dmg;
        }
 
@@ -47,6 +48,6 @@ public class Player {
 
     public void reset(){
         health = 100;
-        atk = 5;
+        atk = 10;
     }
 }
