@@ -6,10 +6,11 @@ public class Player {
         this.name = name;
         this.health = health;
         this.atk = atk;
-
     }
 
     public Player(){
+        health = 100;
+        atk = 5;
     }
 
     public String getName(){
@@ -33,12 +34,9 @@ public class Player {
     }
 
     public boolean isDead(){
-       if (health <= 0){
-           return true;
-       } else {
-           return false;
-       }
+       return health <= 0;
     }
+
     public void setHealth(int newHp){
         health += newHp;
     }
