@@ -35,6 +35,7 @@ public class DungeonsLogic {
         if (d.getRollValue() == 1) {
             System.out.println("Gameover!");
             gameOver = true;
+            replay();
         } else {
             d.setSides(100);
             d.roll();
@@ -138,6 +139,9 @@ public class DungeonsLogic {
                 en.npc();
             }
 
+            if(first.isDead() && second.isDead()){
+                isGameOver();
+            }
         }
         replay();
     }
@@ -155,5 +159,9 @@ public class DungeonsLogic {
                 System.out.println("Thank you for playing the game!");
             }
         }
+    }
+
+    public void isGameOver(){
+        gameOver = true;
     }
 }

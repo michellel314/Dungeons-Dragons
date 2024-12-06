@@ -11,7 +11,7 @@ public class Player {
     public Player(){
         this.name = "Player 2";
         health = 100;
-        atk = 10;
+        this.atk = 10;
     }
 
     public String getName(){
@@ -43,7 +43,7 @@ public class Player {
     }
 
     public void setAtk(int newAtk){
-        atk = newAtk;
+        atk += newAtk;
     }
 
     public void reset(){
