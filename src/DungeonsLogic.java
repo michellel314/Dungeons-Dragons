@@ -1,9 +1,9 @@
 import java.util.Scanner;
 public class DungeonsLogic {
     private Player currentPlayer;
-    Player player1 = new Player("Player 1", 100, 10);
-    Player player2 = new Player();
-    Dungeons dnd = new Dungeons(player1, player2);
+    Player player1;
+    Player player2;
+    Dungeons dnd;
     Dice d = new Dice(0);
     boolean gameOver;
     Scanner scan = new Scanner(System.in);
@@ -12,9 +12,9 @@ public class DungeonsLogic {
     public DungeonsLogic() {
         currentPlayer = null;
         gameOver = false;
-        Dungeons dnd = new Dungeons(player1, player2);
-        player1 = dnd.getPlayer1();
-        player2 = dnd.getPlayer2();
+        dnd = new Dungeons(player1, player2);
+        player1 = new Player("Player 1", 100, 10);
+        player2 = new Player();
     }
 
     public void chooseStartingPlayer() {
