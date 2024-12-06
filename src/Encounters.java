@@ -40,15 +40,13 @@ public class Encounters {
         String ans = scan.nextLine();
         if (ans.equals("y")) {
             if(d.getRollValue() <= 5){
-                System.out.print("The old man decided to give you full iron armor (+20 HP)");
-                if(currentPlayer == player1){
+                System.out.println("The old man decided to give you full iron armor (+20 HP)");
                     player1.setHealth(20);
                 } else {
                     player2.setHealth(20);
                 }
             } else if(d.getRollValue() <= 10){
-                System.out.println("The old man felt nice enough to give you a new weapon out of pity, you upgraded to a iron sword");
-                if(currentPlayer == player1){
+                System.out.println("The old man felt nice enough to give you a new weapon out of pity, you upgraded to a iron sword (+6 Atk)");
                     player1.setAtk(7);
                 } else {
                     player2.setAtk(7);
@@ -161,16 +159,16 @@ public class Encounters {
                         player1.takeDamage(monsterDmg);
                         System.out.println("The Ancient Deep Crow attacks " + player2.getName() + " with " + move + " for " + monsterDmg + " damage!");
                         player2.takeDamage(monsterDmg);
+                    } else {
+                        int victim = attackTarget();
+                        if (victim == 1 && currentPlayer == player1) {
+                            System.out.println("The Ancient Deep Crow attacks " + player1.getName() + " with " + move + " for " + monsterDmg + " damage!");
+                            player1.takeDamage(monsterDmg);
+                        } else if (currentPlayer == player2) {
+                            System.out.println("The Ancient Deep Crow attacks " + player2.getName() + " with " + move + " for " + monsterDmg + " damage!");
+                            player2.takeDamage(monsterDmg);
+                        }
                     }
-                    int victim = dnd.attackTarget();
-                    if(victim == 1 && currentPlayer == player1){
-                        System.out.println("The Ancient Deep Crow attacks " + player1.getName() + " with " + move + " for " + monsterDmg + " damage!");
-                        player1.takeDamage(monsterDmg);
-                    } else if (currentPlayer == player2){
-                        System.out.println("The Shadow Ghast attacks " + player2.getName() + " with " + move + " for " + monsterDmg + " damage!");
-                        player2.takeDamage(monsterDmg);
-                    }
-
                     if (currentPlayer.isDead()) {
                         System.out.println(currentPlayer.getName() + " has died");
                         playerSwap();

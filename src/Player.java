@@ -46,6 +46,10 @@ public class Player {
         atk += newAtk;
     }
 
+    public void setAtk(){
+        atk = 20;
+    }
+
     public void reset(){
         health = 100;
         atk = 10;

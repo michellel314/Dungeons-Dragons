@@ -3,7 +3,6 @@ public class DungeonsLogic {
     private Player currentPlayer;
     Player player1;
     Player player2;
-    Dungeons dnd;
     Dice d = new Dice(0);
     boolean gameOver;
     Scanner scan;
@@ -53,27 +52,20 @@ public class DungeonsLogic {
             }
         } else if (d.getRollValue() == 2) {
             System.out.println("You get a gun (+10 atk)");
-            if (currentPlayer == player1) {
-                player1.setHealth(10);
-            } else {
-                player2.setHealth(10);
-            }
+            player1.setAtk(10);
+            player2.setAtk();
         } else if (d.getRollValue() <= 7) {
             System.out.println("You upgraded to an iron sword (+6 atk)");
             if (currentPlayer == player1) {
                 player1.setAtk(6);
-            } else {
-                player2.setAtk(6);
-            }
+                player2.setAtk();
         } else if (d.getRollValue() <= 40) {
             d.setSides(2);
             if (d.getRollValue() == 1) {
                 System.out.println("You obtained a bow and arrow (+3 atk)");
                 if (currentPlayer == player1) {
                     player1.setAtk(3);
-                } else {
-                    player2.setAtk(3);
-                }
+                    player2.setAtk();
             } else {
                 System.out.println("You obtained an artifact (+35 HP)");
                 if (currentPlayer == player1) {
@@ -84,11 +76,8 @@ public class DungeonsLogic {
             }
         } else {
             System.out.println("You obtained a rusty dagger (+2 atk)");
-            if (currentPlayer == player1) {
-                player1.setAtk(2);
-            } else {
-                player2.setAtk(2);
-            }
+            player1.setAtk(2);
+            player2.setAtk();
         }
     }
 
@@ -127,7 +116,7 @@ public class DungeonsLogic {
                 System.out.print("Please choose an available path: ");
                 ans = scan.nextLine();
             }
-            Encounters en = new Encounters(this, first, second);
+            Encounters en = new Encounters(this, player1, player2);
             String event = encounters();
             System.out.println("You go " + ans + " and find a " + event);
 
@@ -139,8 +128,8 @@ public class DungeonsLogic {
                 en.npc();
             }
 
-            if(first.isDead() && second.isDead()){
-                isGameOver();
+            if(player1.isDead() && player2.isDead()){
+                setGameOver();
             }
         }
         replay();
@@ -161,7 +150,7 @@ public class DungeonsLogic {
         }
     }
 
-    public void isGameOver(){
+    public void setGameOver(){
         gameOver = true;
     }
 }
