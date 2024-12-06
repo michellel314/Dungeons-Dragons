@@ -142,7 +142,6 @@ public class DungeonsLogic {
     }
 
     private void replay(){
-
         if (player1.isDead() && player2.isDead()) {
             System.out.print("Both players are dead, would both like to restart for a new game? (y / n): ");
             String choice = scan.nextLine();
