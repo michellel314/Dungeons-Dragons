@@ -72,7 +72,8 @@ public class DungeonsLogic {
             player2.setAtk();
         }
     }
-// This method is called by the Encounters class once the players are in an event
+
+    // This method is called by the Encounters class once the players are in an event
     public String encounters() {
         d.setSides(3);
         d.roll();
