@@ -9,7 +9,7 @@ public class YoungGoldDragon {
         d.setSides(10);
         d.roll();
         hp = (17 * d.getRollValue() + 85);
-        return "A Young Gold Dragon with " + hp + " HP has appeared";
+        return "A Young Gold Dragon with " + hp + " HP has appeared!";
     }
 
     public void hitYGD(int hit){

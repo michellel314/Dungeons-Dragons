@@ -9,7 +9,7 @@ public class ShadowGhast {
         d.setSides(8);
         d.roll();
         SGHP = (9 * d.getRollValue() + 9);
-        return "A Shadow Ghast with " + SGHP + " HP has appeared";
+        return "A Shadow Ghast with " + SGHP + " HP has appeared!";
     }
 
     public void hitSG (int hit) {

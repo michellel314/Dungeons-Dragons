@@ -28,15 +28,15 @@ public class Player {
 
     public void takeDamage(int dmg){
         int loss = health - dmg;
-       if (loss < health){
-           health -= dmg;
-       }
-
+        if (loss < health){
+            health -= dmg;
+        }
     }
 
     public boolean isDead(){
-       return health <= 0;
+        return health <= 0;
     }
+
 
     public void setHealth(int newHp){
         health += newHp;
@@ -46,8 +46,16 @@ public class Player {
         atk += newAtk;
     }
 
+    public void setAtk(){
+        atk = 20;
+    }
+
     public void reset(){
-        health = 100;
+        health = 120;
         atk = 10;
+    }
+
+    public void setName (String name){
+        this.name = name;
     }
 }

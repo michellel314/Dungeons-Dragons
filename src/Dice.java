@@ -1,3 +1,6 @@
+// This class is used for creating a Dice object
+// It mainly helps in randomizing certain aspects of the game like the monster's attacks and etc
+
 public class Dice {
     private int numSides;
     int roll = 0;
@@ -19,5 +22,4 @@ public class Dice {
     public void setSides(int newSide){
         numSides = newSide;
     }
-
 }

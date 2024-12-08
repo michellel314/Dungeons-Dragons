@@ -2,14 +2,13 @@ public class AncientDeepCrow {
     private int hp;
     Dice d = new Dice(0);
     public AncientDeepCrow(){
-
     }
 
     public String createADC(){
         d.setSides(12);
         d.roll();
         hp = (15 * d.getRollValue() + 90);
-        return "An Ancient Deep Crow with an HP of " + hp + " has appeared";
+        return "An Ancient Deep Crow with an HP of " + hp + " has appeared!";
     }
 
     public void hitADC(int hit){
